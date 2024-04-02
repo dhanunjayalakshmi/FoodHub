@@ -1,0 +1,27 @@
+{
+  "name": "foodhub",
+  "version": "1.0.0",
+  "description": "This is part of React Learning",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "Jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhanunjayalakshmi/FoodHub.git"
+  },
+  "author": "Dhanunjaya Lakshmi Ginjupalli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhanunjayalakshmi/FoodHub/issues"
+  },
+  "homepage": "https://github.com/dhanunjayalakshmi/FoodHub#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}
