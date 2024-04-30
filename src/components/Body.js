@@ -4,7 +4,7 @@ import Restaurants from "./Restaurants";
 
 const Body = () => {
   return (
-    <div className="body">
+    <div className="w-full flex flex-col justify-center items-center">
       {/* <FoodOptions />
         <RestaurantOptions /> */}
       <Restaurants />
