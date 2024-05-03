@@ -1,3 +1,5 @@
+import { CDN_URL } from "../utils/constants";
+
 const RestaurantCard = ({ resData }) => {
   const {
     id,
@@ -16,7 +18,7 @@ const RestaurantCard = ({ resData }) => {
       <div className="w-full h-72 overflow-hidden relative rounded-xl">
         <img
           // src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/+${cloudinaryImageId}`}
-          src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
+          src={`${CDN_URL}${cloudinaryImageId}`}
           alt="Food"
           className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-full min-h-full object-cover"
         />
