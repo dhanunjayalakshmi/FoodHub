@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { RESTAURANTS_API } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Restaurants = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -24,7 +25,12 @@ const Restaurants = () => {
       </h2>
       <div className="w-[80%] grid grid-cols-4 gap-8 mx-auto">
         {listOfRestaurants?.map((restaurant) => (
-          <RestaurantCard resData={restaurant?.info} />
+          <Link
+            key={restaurant?.info?.id}
+            to={"/restaurants/" + restaurant?.info?.id}
+          >
+            <RestaurantCard resData={restaurant?.info} />
+          </Link>
         ))}
       </div>
     </div>
