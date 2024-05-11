@@ -11,7 +11,13 @@ const MenuItems = () => {
           <p className="text-sm p-1">Item Rating</p>
           <p className="text-sm p-1">Item Description</p>
         </div>
-        <div className="my-2">
+        <div className="my-2 relative">
+          <button
+            type="button"
+            className="absolute text-sm text-green-500 bg-white font-bold border-2 px-4 py-1 rounded-lg mx-12 my-32"
+          >
+            ADD
+          </button>
           <img
             className="w-40 rounded-xl"
             src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/kwj0buclynruoihcq1og"
@@ -19,7 +25,7 @@ const MenuItems = () => {
           />
         </div>
       </div>
-      <div class="w-full h-px my-2 bg-gray-300"></div>
+      <div class="w-full h-px mt-6 bg-gray-300"></div>
     </div>
   );
 };
