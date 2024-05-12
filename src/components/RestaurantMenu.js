@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MenuCategories from "./MenuCategories";
+import useRestaurantMenu from "../utils/useRestaurantMenu.js";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
+
+  const resInfo = useRestaurantMenu(resId);
+
+  console.log(resInfo);
 
   useEffect(() => {
     // fetchUpdatedRestaurants();
@@ -61,7 +66,7 @@ const RestaurantMenu = () => {
             <p className="px-4 py-1 font-bold text-[#f26921]">Cuisines</p>
             <p className="px-4 py-1 font-bold">Location</p>
             <p className="px-4 py-1 font-bold">Delivery time</p>
-            <div class="w-full h-px my-2 bg-gray-200"></div>
+            <div className="w-full h-px my-2 bg-gray-200"></div>
             <p className="px-4 py-1 text-gray-500">
               Far (6.4 kms) | Additional delivery fee will apply
             </p>
