@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MenuItems from "./MenuItems";
 
 const MenuCategories = ({ category }) => {
-  const [showItems, setShowItems] = useState(false);
+  const [showItems, setShowItems] = useState(true);
 
   const { itemCards, title } = category;
 

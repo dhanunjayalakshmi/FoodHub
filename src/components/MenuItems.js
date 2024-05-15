@@ -14,7 +14,7 @@ const MenuItems = ({ itemCard }) => {
 
   return (
     <div className="w-full">
-      <div className="w-full flex gap-8 my-4">
+      <div className="w-full flex gap-4 my-4">
         <div className="w-9/12 flex flex-col">
           <p className="font-bold text-md p-1">
             {itemAttribute?.vegClassifier === "VEG" ? "🟢" : "🔴"}
@@ -31,7 +31,7 @@ const MenuItems = ({ itemCard }) => {
           )}
           <p className="text-md p-1">{description}</p>
         </div>
-        <div className="w-3/12 my-2 relative">
+        <div className="w-3/12 flex justify-end my-2 relative">
           <button
             type="button"
             className={`absolute text-md text-green-500 bg-white font-bold border-2 px-4 py-1 rounded-lg mx-12 ${
