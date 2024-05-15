@@ -14,8 +14,8 @@ const MenuItems = ({ itemCard }) => {
 
   return (
     <div className="w-full">
-      <div className="w-full flex justify-between my-4">
-        <div className="flex flex-col">
+      <div className="w-full flex gap-8 my-4">
+        <div className="w-9/12 flex flex-col">
           <p className="font-bold text-md p-1">
             {itemAttribute?.vegClassifier === "VEG" ? "🟢" : "🔴"}
           </p>
@@ -31,14 +31,24 @@ const MenuItems = ({ itemCard }) => {
           )}
           <p className="text-md p-1">{description}</p>
         </div>
-        <div className="my-2 relative">
+        <div className="w-3/12 my-2 relative">
           <button
             type="button"
-            className="absolute text-md text-green-500 bg-white font-bold border-2 px-4 py-1 rounded-lg mx-12 my-32"
+            className={`absolute text-md text-green-500 bg-white font-bold border-2 px-4 py-1 rounded-lg mx-12 ${
+              imageId ? "my-32" : "my-16"
+            }`}
           >
             ADD
           </button>
-          <img className="w-40 rounded-xl" src={CDN_URL + imageId} alt="" />
+          <div className="w-40 h-36">
+            {imageId && (
+              <img
+                className="w-full h-full object-cover rounded-xl"
+                src={CDN_URL + imageId}
+                alt=""
+              />
+            )}
+          </div>
         </div>
       </div>
       <div className="w-full h-px mt-6 bg-gray-300"></div>
