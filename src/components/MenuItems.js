@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { CDN_URL } from "../utils/constants";
 
-const MenuItems = ({ itemCard }) => {
+const MenuItems = ({ itemCard, cartItems, setCartItems }) => {
   const {
     name,
     description,
@@ -11,6 +11,10 @@ const MenuItems = ({ itemCard }) => {
     price,
     defaultPrice,
   } = itemCard;
+
+  const handleAddItem = () => {
+    setCartItems([...cartItems, itemCard]);
+  };
 
   return (
     <div className="w-full">
@@ -34,7 +38,8 @@ const MenuItems = ({ itemCard }) => {
         <div className="w-3/12 flex justify-end my-2 relative">
           <button
             type="button"
-            className={`absolute text-md text-green-500 bg-white font-bold border-2 px-4 py-1 rounded-lg mx-12 ${
+            onClick={handleAddItem}
+            className={`absolute w-24 text-md text-green-500 bg-white font-bold border-2 px-2 py-1 rounded-lg mx-7 ${
               imageId ? "my-32" : "my-16"
             }`}
           >

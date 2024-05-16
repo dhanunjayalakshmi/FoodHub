@@ -4,11 +4,15 @@ import MenuItems from "./MenuItems";
 const MenuCategories = ({ category }) => {
   const [showItems, setShowItems] = useState(true);
 
+  const [cartItems, setCartItems] = useState([]);
+
   const { itemCards, title } = category;
 
   const handleClick = () => {
     setShowItems(!showItems);
   };
+
+  console.log(cartItems);
 
   return (
     <div className="w-full">
@@ -26,6 +30,8 @@ const MenuCategories = ({ category }) => {
           <MenuItems
             key={itemCard?.card?.info?.id}
             itemCard={itemCard?.card?.info}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
           />
         ))}
     </div>
