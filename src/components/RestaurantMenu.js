@@ -32,7 +32,7 @@ const RestaurantMenu = () => {
     );
 
   return (
-    <div className="w-[35%] flex flex-col mx-auto my-4">
+    <div className="w-[35%] pt-16 flex flex-col mx-auto my-4">
       <div className="my-4 flex flex-col">
         <h2 className="text-2xl font-bold py-4">{name}</h2>
         <div className="p-4 rounded-3xl bg-[#e2e2e9]">

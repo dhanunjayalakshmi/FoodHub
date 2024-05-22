@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { CDN_URL } from "../utils/constants";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
-const MenuItems = ({ itemCard, cartItems, setCartItems }) => {
+const MenuItems = ({ itemCard }) => {
+  const dispatch = useDispatch();
+  const { resId } = useParams();
   const {
     name,
     description,
@@ -13,7 +18,7 @@ const MenuItems = ({ itemCard, cartItems, setCartItems }) => {
   } = itemCard;
 
   const handleAddItem = () => {
-    setCartItems([...cartItems, itemCard]);
+    dispatch(addItem(itemCard));
   };
 
   return (
