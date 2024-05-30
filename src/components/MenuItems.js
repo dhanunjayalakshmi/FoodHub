@@ -1,8 +1,8 @@
 import React from "react";
 import { CDN_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addItem } from "../utils/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, removeItem } from "../utils/cartSlice";
 
 const MenuItems = ({ itemCard }) => {
   const dispatch = useDispatch();
@@ -17,8 +17,22 @@ const MenuItems = ({ itemCard }) => {
     defaultPrice,
   } = itemCard;
 
+  const cartResId = useSelector((store) => store?.cart?.cartResId);
+
+  const count = useSelector(
+    (store) =>
+      store?.cart?.cartItems?.filter((obj) => obj["id"] === itemCard?.id)
+        ?.length
+  );
+
   const handleAddItem = () => {
-    dispatch(addItem(itemCard));
+    if (cartResId == resId || cartResId == null)
+      dispatch(addItem({ itemCard, resId }));
+    else console.log("Do you want to update your cart with the new items?");
+  };
+
+  const handleRemoveItem = () => {
+    dispatch(removeItem({ key: "id", value: itemCard?.id }));
   };
 
   return (
@@ -41,15 +55,38 @@ const MenuItems = ({ itemCard }) => {
           <p className="text-md p-1">{description}</p>
         </div>
         <div className="w-3/12 flex justify-end my-2 relative">
-          <button
-            type="button"
-            onClick={handleAddItem}
-            className={`absolute w-24 text-md text-green-500 bg-white font-bold border-2 px-2 py-1 rounded-lg mx-7 ${
-              imageId ? "my-32" : "my-16"
-            }`}
-          >
-            ADD
-          </button>
+          {count > 0 ? (
+            <div
+              className={`flex justify-between items-center absolute w-28 text-lg text-green-500 bg-white font-semibold border-2 rounded-lg mx-6 ${
+                imageId ? "my-32" : "my-16"
+              }`}
+            >
+              <button
+                onClick={handleRemoveItem}
+                className="w-[30%] cursor-pointer px-2 py-1 hover:bg-[#dddddd]"
+              >
+                -
+              </button>
+              <span className="px-2 py-1">{count}</span>
+              <button
+                onClick={handleAddItem}
+                className="w-[30%] cursor-pointer px-2 py-1 hover:bg-[#dddddd]"
+              >
+                +
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={handleAddItem}
+              className={`absolute w-24 text-md text-green-500 bg-white font-bold border-2 px-2 py-1 rounded-lg mx-7 ${
+                imageId ? "my-32" : "my-16"
+              } hover:bg-[#dddddd]`}
+            >
+              ADD
+            </button>
+          )}
+
           <div className="w-40 h-36">
             {imageId && (
               <img

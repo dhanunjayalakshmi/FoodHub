@@ -3,7 +3,7 @@ import { LOGO_URL } from "../utils/constants";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-  const cartItems = useSelector((store) => store?.cart?.items);
+  const cartItems = useSelector((store) => store?.cart?.cartItems);
 
   return (
     <div className="w-full fixed top-0 flex justify-center py-4 shadow-md z-30 bg-white">
