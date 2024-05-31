@@ -114,8 +114,8 @@ const Cart = () => {
               <span
                 className={`font-bold text-xs p-1 border-2 ${
                   item?.itemAttribute?.vegClassifier === "VEG"
-                    ? "border-green-300"
-                    : "border-red-300"
+                    ? "border-[#7cb342]"
+                    : "border-[#f44336]"
                 }`}
               >
                 {item?.itemAttribute?.vegClassifier === "VEG" ? "🟢" : "🔴"}

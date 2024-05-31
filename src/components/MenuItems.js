@@ -39,9 +39,15 @@ const MenuItems = ({ itemCard, setShowDialog }) => {
     <div className="w-full">
       <div className="w-full flex gap-4 my-4">
         <div className="w-9/12 flex flex-col">
-          <p className="font-bold text-md p-1">
+          <span
+            className={`w-8 font-bold text-sm p-1 border-2 ${
+              itemAttribute?.vegClassifier === "VEG"
+                ? "border-[#7cb342]"
+                : "border-[#f44336]"
+            }`}
+          >
             {itemAttribute?.vegClassifier === "VEG" ? "🟢" : "🔴"}
-          </p>
+          </span>
           <p className="font-bold text-md p-1">{name}</p>
           <p className="font-bold text-md p-1">
             ₹ {defaultPrice ? defaultPrice / 100 : price / 100}
