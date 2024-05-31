@@ -17,7 +17,6 @@ const RestaurantCard = ({ resData }) => {
     <div className="w-ful flex flex-col rounded-xl cursor-pointer transition-transform duration-300 transform hover:scale-95">
       <div className="w-full h-72 overflow-hidden relative rounded-xl">
         <img
-          // src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/+${cloudinaryImageId}`}
           src={`${CDN_URL}${cloudinaryImageId}`}
           alt="Food"
           className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-full min-h-full object-cover"

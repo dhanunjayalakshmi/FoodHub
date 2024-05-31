@@ -25,12 +25,14 @@ const Header = () => {
           <li className="cursor-pointer font-medium text-[#171717] hover:text-[#f26921]">
             Contact Us
           </li>
-          <li className="group cursor-pointer font-medium text-[#171717] hover:text-[#f26921]">
-            Cart{" "}
-            <span className="items-center text-white px-1 bg-green-600 group-hover:bg-[#f26921]">
-              {cartItems?.length}
-            </span>
-          </li>
+          <Link to="/cart">
+            <li className="group cursor-pointer font-medium text-[#171717] hover:text-[#f26921]">
+              Cart{" "}
+              <span className="items-center text-white px-1 bg-green-600 group-hover:bg-[#f26921]">
+                {cartItems?.length}
+              </span>
+            </li>
+          </Link>
           <li className="cursor-pointer font-medium text-[#171717] hover:text-[#f26921]">
             Login
           </li>

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { CDN_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../utils/cartSlice";
 
-const MenuItems = ({ itemCard }) => {
+const MenuItems = ({ itemCard, setShowDialog }) => {
   const dispatch = useDispatch();
   const { resId } = useParams();
   const {
@@ -28,7 +28,7 @@ const MenuItems = ({ itemCard }) => {
   const handleAddItem = () => {
     if (cartResId == resId || cartResId == null)
       dispatch(addItem({ itemCard, resId }));
-    else console.log("Do you want to update your cart with the new items?");
+    else setShowDialog(true);
   };
 
   const handleRemoveItem = () => {
