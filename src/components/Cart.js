@@ -1,48 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { Link } from "react-router-dom";
 import { CDN_URL } from "../utils/constants";
 import { clearCart } from "../utils/cartSlice";
 
-const Cart = () => {
+const EmptyCartPage = () => {
+  return (
+    <div className="w-[35%] pt-16 flex flex-col mx-auto my-4 relative">
+      <div className="absolute w-full pt-32 flex flex-col items-center">
+        <div className="w-[50%] ml-8">
+          <img
+            src="https://media.istockphoto.com/id/1369712605/vector/cooking-food-in-frying-pan-vector-illustration-of-cut-vegetables-cooked-on-gas-stove-cartoon.jpg?s=612x612&w=0&k=20&c=3H9TU5PosN-vYYFQCahK-RdA695_41QiT90n1re_0j0="
+            alt=""
+          />
+        </div>
+        <h4 className="text-slate-900 text-lg font-bold py-1">
+          Your cart is empty
+        </h4>
+        <p className="text-md py-1">
+          You can go to home page to view more restaurants
+        </p>
+
+        <Link to="/">
+          <button className="text-white text-md font-semibold px-4 py-2 m-2 bg-[#fc8019] hover:shadow-xl">
+            SEE RESTAUARNTS NEAR YOU
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+const Cartpage = ({ cartItems }) => {
+  const dispatch = useDispatch();
+  const { cartResId: resId, cartResInfo: resInfo } = useSelector(
+    (store) => store?.cart
+  );
   const [cartItemsInfo, setCartItemsInfo] = useState([]);
   const [total, setTotal] = useState(0);
-  const cartItems = useSelector((store) => store?.cart?.cartItems);
-  const resId = useSelector((store) => store?.cart?.cartResId);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  const { name, areaName, cloudinaryImageId } = resInfo;
+
+  useEffect(() => {
+    modifyCartItemsInfo();
+  }, [cartItems]);
+
+  useEffect(() => {
+    const amount = cartItemsInfo?.reduce((accumulator, item) => {
+      return accumulator + item?.itemPrice * item?.count;
+    }, 0);
+    setTotal(amount);
+  }, [cartItemsInfo]);
 
   const handleClearCart = () => {
     dispatch(clearCart());
-    navigate("/");
   };
-
-  if (cartItems?.length === 0)
-    return (
-      <div className="w-[35%] pt-16 flex flex-col mx-auto my-4 relative">
-        <div className="absolute w-full pt-32 flex flex-col items-center">
-          <div className="w-[50%] ml-8">
-            <img
-              src="https://media.istockphoto.com/id/1369712605/vector/cooking-food-in-frying-pan-vector-illustration-of-cut-vegetables-cooked-on-gas-stove-cartoon.jpg?s=612x612&w=0&k=20&c=3H9TU5PosN-vYYFQCahK-RdA695_41QiT90n1re_0j0="
-              alt=""
-            />
-          </div>
-          <h4 className="text-slate-900 text-lg font-bold py-1">
-            Your cart is empty
-          </h4>
-          <p className="text-md py-1">
-            You can go to home page to view more restaurants
-          </p>
-
-          <Link to="/">
-            <button className="text-white text-md font-semibold px-4 py-2 m-2 bg-[#fc8019] hover:shadow-xl">
-              SEE RESTAUARNTS NEAR YOU
-            </button>
-          </Link>
-        </div>
-      </div>
-    );
 
   const modifyCartItemsInfo = () => {
     const map = new Map();
@@ -62,24 +74,6 @@ const Cart = () => {
 
     setCartItemsInfo(Array.from(map.values()));
   };
-
-  useEffect(() => {
-    modifyCartItemsInfo();
-  }, [cartItems]);
-
-  useEffect(() => {
-    const amount = cartItemsInfo?.reduce((accumulator, item) => {
-      return accumulator + item?.itemPrice * item?.count;
-    }, 0);
-    setTotal(amount);
-  }, [cartItemsInfo]);
-
-  const resInfo = useRestaurantMenu(resId);
-
-  if (!resInfo) return;
-
-  const { name, areaName, cloudinaryImageId } =
-    resInfo?.cards[2]?.card?.card?.info;
 
   return (
     <div className="w-[35%] pt-20 flex flex-col bg-white mx-auto my-4 relative">
@@ -153,6 +147,16 @@ const Cart = () => {
         </p>
       </div>
     </div>
+  );
+};
+
+const Cart = () => {
+  const cartItems = useSelector((store) => store?.cart?.cartItems);
+
+  return cartItems?.length === 0 ? (
+    <EmptyCartPage />
+  ) : (
+    <Cartpage cartItems={cartItems} />
   );
 };
 

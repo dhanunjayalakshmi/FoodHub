@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MenuItems from "./MenuItems";
 
-const MenuCategories = ({ category, setShowDialog }) => {
+const MenuCategories = ({ category, setShowDialog, restaurantInfo }) => {
   const [showItems, setShowItems] = useState(true);
 
   const { itemCards, title } = category;
@@ -27,6 +27,7 @@ const MenuCategories = ({ category, setShowDialog }) => {
             key={itemCard?.card?.info?.id}
             itemCard={itemCard?.card?.info}
             setShowDialog={setShowDialog}
+            restaurantInfo={restaurantInfo}
           />
         ))}
     </div>

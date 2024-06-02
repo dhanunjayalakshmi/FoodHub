@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../utils/cartSlice";
 
-const MenuItems = ({ itemCard, setShowDialog }) => {
+const MenuItems = ({ itemCard, setShowDialog, restaurantInfo }) => {
   const dispatch = useDispatch();
   const { resId } = useParams();
   const {
@@ -27,7 +27,7 @@ const MenuItems = ({ itemCard, setShowDialog }) => {
 
   const handleAddItem = () => {
     if (cartResId == resId || cartResId == null)
-      dispatch(addItem({ itemCard, resId }));
+      dispatch(addItem({ itemCard, resId, restaurantInfo }));
     else setShowDialog(true);
   };
 

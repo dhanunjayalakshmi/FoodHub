@@ -28,6 +28,7 @@ const RestaurantMenu = () => {
     costForTwo,
     sla,
     availabilityServiceabilityMessage,
+    cloudinaryImageId,
   } = resInfo?.cards[2]?.card?.card?.info;
 
   const categoryList =
@@ -76,6 +77,7 @@ const RestaurantMenu = () => {
             key={category?.card?.card?.itemCards?.card?.info?.id}
             category={category?.card?.card}
             setShowDialog={setShowDialog}
+            restaurantInfo={{ name, areaName, cloudinaryImageId }}
           />
         ))}
       </div>
