@@ -6,7 +6,7 @@ const Header = () => {
   const cartItems = useSelector((store) => store?.cart?.cartItems);
 
   return (
-    <div className="w-full fixed top-0 flex justify-center py-4 shadow-md z-30 bg-white">
+    <div className="w-full flex justify-center py-4 shadow-md z-30 bg-white">
       <div className="flex justify-between items-center w-full max-w-3xl gap-12">
         <div className="cursor-pointer">
           <Link to="/">

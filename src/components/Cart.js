@@ -76,75 +76,77 @@ const Cartpage = ({ cartItems }) => {
   };
 
   return (
-    <div className="w-[35%] pt-20 flex flex-col bg-white mx-auto my-4 relative">
-      <div className="flex justify-between py-6 cursor-pointer">
-        <Link to={`/restaurants/${resId}`}>
-          {" "}
-          <div className="flex justify-center gap-8 mx-4">
-            <div className="w-24 h-20 relative overflow-hidden">
-              <img
-                className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-full min-h-full object-cover"
-                src={`${CDN_URL}${cloudinaryImageId}`}
-                alt=""
-              />
+    <div className="w-full flex-1 overflow-y-auto">
+      <div className="w-[35%] flex flex-col bg-white mx-auto my-4 relative">
+        <div className="flex justify-between py-6 cursor-pointer">
+          <Link to={`/restaurants/${resId}`}>
+            {" "}
+            <div className="flex justify-center gap-8 mx-4">
+              <div className="w-24 h-20 relative overflow-hidden">
+                <img
+                  className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-full min-h-full object-cover"
+                  src={`${CDN_URL}${cloudinaryImageId}`}
+                  alt=""
+                />
+              </div>
+              <div className="align-center">
+                <h3 className="font-bold text-lg">{name}</h3>
+                <p className="text-slate-700">{areaName}</p>
+              </div>
             </div>
-            <div className="align-center">
-              <h3 className="font-bold text-lg">{name}</h3>
-              <p className="text-slate-700">{areaName}</p>
+          </Link>
+          <button
+            onClick={handleClearCart}
+            className="text-xl font-semibold text-white rounded-3xl bg-[#fc8019] px-4"
+          >
+            Clear Cart
+          </button>
+        </div>
+        <div className="flex flex-col py-2">
+          {cartItemsInfo?.map((item) => (
+            <div key={item?.id} className="flex justify-between p-2">
+              <div className="flex gap-2 items-center p-2">
+                <span
+                  className={`font-bold text-xs p-1 border-2 ${
+                    item?.itemAttribute?.vegClassifier === "VEG"
+                      ? "border-[#7cb342]"
+                      : "border-[#f44336]"
+                  }`}
+                >
+                  {item?.itemAttribute?.vegClassifier === "VEG" ? "🟢" : "🔴"}
+                </span>
+                <span className="text-slate-700 text-lg">
+                  {item?.name} x {item?.count}
+                </span>
+              </div>
+              <p className="p-2 text-slate-700 text-lg">
+                ₹ {item?.itemPrice * item?.count}
+              </p>
             </div>
+          ))}
+        </div>
+        <div className="flex flex-col p-4 my-2">
+          <p className="font-bold text-lg text-slate-700">Bill Details</p>
+          <div className="flex justify-between py-2">
+            <p>Item Total</p>
+            <p>₹ {total}</p>
           </div>
-        </Link>
-        <button
-          onClick={handleClearCart}
-          className="text-xl font-semibold text-white rounded-3xl bg-[#fc8019] px-4"
-        >
-          Clear Cart
-        </button>
-      </div>
-      <div className="flex flex-col py-2">
-        {cartItemsInfo?.map((item) => (
-          <div key={item?.id} className="flex justify-between p-2">
-            <div className="flex gap-2 items-center p-2">
-              <span
-                className={`font-bold text-xs p-1 border-2 ${
-                  item?.itemAttribute?.vegClassifier === "VEG"
-                    ? "border-[#7cb342]"
-                    : "border-[#f44336]"
-                }`}
-              >
-                {item?.itemAttribute?.vegClassifier === "VEG" ? "🟢" : "🔴"}
-              </span>
-              <span className="text-slate-700 text-lg">
-                {item?.name} x {item?.count}
-              </span>
-            </div>
-            <p className="p-2 text-slate-700 text-lg">
-              ₹ {item?.itemPrice * item?.count}
-            </p>
+          <div className="flex justify-between py-2">
+            <p>GST</p>
+            <p>₹ {Math.round(total * 0.1)}</p>
           </div>
-        ))}
-      </div>
-      <div className="flex flex-col p-4 my-2">
-        <p className="font-bold text-lg text-slate-700">Bill Details</p>
-        <div className="flex justify-between py-2">
-          <p>Item Total</p>
-          <p>₹ {total}</p>
+          <div className="flex justify-between py-2">
+            <p>Delivery Charges</p>
+            <p>₹ 15</p>
+          </div>
         </div>
-        <div className="flex justify-between py-2">
-          <p>GST</p>
-          <p>₹ {Math.round(total * 0.1)}</p>
+        <div className="w-full h-[1.5] mt-2 bg-black"></div>
+        <div className="flex justify-between p-4">
+          <p className="font-bold text-lg">TO PAY</p>
+          <p className="font-bold text-lg">
+            ₹ {Math.round(15 + total * 0.1 + total)}
+          </p>
         </div>
-        <div className="flex justify-between py-2">
-          <p>Delivery Charges</p>
-          <p>₹ 15</p>
-        </div>
-      </div>
-      <div className="w-full h-[1.5] mt-2 bg-black"></div>
-      <div className="flex justify-between p-4">
-        <p className="font-bold text-lg">TO PAY</p>
-        <p className="font-bold text-lg">
-          ₹ {Math.round(15 + total * 0.1 + total)}
-        </p>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import Cart from "./components/Cart";
 const AppLayout = () => {
   return (
     <Provider store={appStore}>
-      <div className="relative">
+      <div className="w-full h-screen flex flex-col">
         <Header />
         <Outlet />
       </div>
