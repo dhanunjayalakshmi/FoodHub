@@ -76,7 +76,7 @@ const Cartpage = ({ cartItems }) => {
   };
 
   return (
-    <div className="w-full flex-1 overflow-y-auto">
+    <div className="w-full flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-gray-300">
       <div className="w-[35%] flex flex-col bg-white mx-auto my-4 relative">
         <div className="flex justify-between py-6 cursor-pointer">
           <Link to={`/restaurants/${resId}`}>

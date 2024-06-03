@@ -49,7 +49,7 @@ const RestaurantMenu = () => {
   };
 
   return (
-    <div className="w-full flex-1 overflow-y-auto">
+    <div className="w-full flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-gray-300">
       <div className="w-[35%] flex flex-col mx-auto">
         <div className={`my-4 flex flex-col ${showDialog ? "pt-24" : "pt-2"}`}>
           <h2 className="text-2xl font-bold py-4">{name}</h2>
